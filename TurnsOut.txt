@@ -26,9 +26,8 @@ Banking App Project
 
 		Employee extends User
 		--------------------
-		- String username
-		- String Password
-		- ArrayList<Account> accounts
+		- String userType
+		- boolean isAdmin
 		+ toString() : String
 
 
