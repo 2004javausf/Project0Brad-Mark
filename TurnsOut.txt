@@ -1,0 +1,77 @@
+notes about the possible class structure. 
+My best guess as to what it should look like.
+
+-------------------------------------
+Class
+- Type variableName
++ methodName() : ReturnValue
+-------------------------------------
+
+
+Banking App Project
+
+	User
+	-----------------
+	- String username
+	- String Password
+	+ toString() : String
+
+
+		Customer extends User
+		---------------------
+		- String userType
+		- ArrayList<Account> accounts
+		+ toString() : String
+
+
+		Employee extends User
+		--------------------
+		- String username
+		- String Password
+		- ArrayList<Account> accounts
+		+ toString() : String
+
+
+	Account
+	---------------
+	- Customer accountHolder
+	- double balance
+	+ toString() : String
+
+
+		Active extends Account
+		--------------------
+		- String accountType
+		+ withdraw(double amount) : void
+		+ deposit(double amount) : void
+		+ transfer(double amount, Account otherAccount) : void
+
+
+		Pending extends Account
+		---------------------
+		- String accountType
+		- String status
+		+ approve() : void
+		+ deny() : void
+
+
+//from here down I'm less confident
+//CRUD operations
+//menu navigation
+//test coverage using J-Unit
+
+	Menu
+	------------------
+	- Scanner keyboard
+	- Bank bank
+	+ runMenu() : void
+		//methods to control flow and provide services
+
+	Bank
+	------------------
+	- ArrayList<Customers> customers
+	- ArrayList<Accounts> accounts
+	+ addCustomer() : void
+	+ addAccount() : void
+	+ removeAccount() : void
+	+ selectAccount() : int
