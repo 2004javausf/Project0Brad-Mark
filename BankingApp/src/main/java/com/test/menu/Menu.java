@@ -28,7 +28,7 @@ public class Menu {
 
 	private void printMenu() {
 		System.out.println("Do you have an account with us?");
-		System.out.println("For yes press 1");
+		System.out.println("For Yes press 1");
 		System.out.println("For No press 2");
 	}
 
@@ -47,7 +47,7 @@ public class Menu {
 			}
 		}
 		if(1>option||option>2) {
-			System.out.println("Please enter one of the two options. 1 for yes or 2 for no");
+			System.out.println("Please enter one of the two options. 1 for Yes or 2 for No");
 		}
 		
 	}while ((1>option||option>2));
@@ -119,7 +119,7 @@ public class Menu {
 						catch(Exception e) {
 							i2++;
 							if(i2>2) {
-								System.out.println("You know the drill");
+								System.out.println("You know the drill.");
 							}
 						}
 						if(1>option2||option2>2) {
@@ -142,10 +142,17 @@ public class Menu {
 
 
 					private void createAccount() {
+						int i = 0;
+						
+						
 							System.out.println("Please enter your preferred username: ");
 							String username = sc.nextLine();
 							//if the username is in our list make a statement saying it is a taken username
 							System.out.println("Your username is: "+username);
+							
+							while(!exit) {
+								i++;
+								
 							System.out.println("Please enter your password: ");
 							String password = sc.nextLine();
 							
@@ -155,6 +162,15 @@ public class Menu {
 								System.out.println("Passwords match.");
 								//take them to accounts to enter in more info or something i dnno
 								System.exit(0);
+							}
+							else {
+								if (i>3) {
+									System.out.println("Your passwords still do not match, program ending.");
+									System.exit(0);
+								}
+								System.out.println("Passwords do not match. Please try again.");
+								
+							}
 							}
 					}
 					
