@@ -1,16 +1,14 @@
 package com.test.driver;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
 
-import com.test.menu.Menu;
+import com.test.bank.UserServices;
+import com.test.users.CustomerOne;
 
 public class Driver {
-	static Map<String,String> users = new HashMap<>();
 	public static void main(String[] args) {
-		users.put("bob","bob");
-		users.put("man","man");
-		Menu m = new Menu();
-		m.runMenu();
+		CustomerOne u = new CustomerOne("mark","brad");
+		System.out.println(UserServices.getWorkingList());
+		UserServices.writeFileContents(u);
 	}
 }
