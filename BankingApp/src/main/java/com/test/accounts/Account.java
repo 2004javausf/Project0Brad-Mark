@@ -1,10 +1,13 @@
 package com.test.accounts;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import com.test.users.Customer;
 
-public class Account {
+public class Account implements Serializable{
+	
+	private static final long serialVersionUID = 5781749031878828104L;
 	protected ArrayList<Customer> accountHolder;
 	protected double balance =0;
 	

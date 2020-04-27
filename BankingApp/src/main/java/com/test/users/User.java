@@ -1,6 +1,9 @@
 package com.test.users;
 
-abstract class User {
+import java.io.Serializable;
+
+class User implements Serializable {
+	private static final long serialVersionUID = -352637876741399998L;
 	protected String username;
 	protected String password;
 	
