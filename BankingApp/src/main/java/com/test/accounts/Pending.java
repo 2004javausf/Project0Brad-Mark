@@ -8,8 +8,8 @@ public class Pending extends Account{
 	private String accountType = "Pending";
 	private String status = "Pending";
 
-	public Pending(ArrayList<Customer> accountHolder, double balance) {
-		super(accountHolder, balance);
+	public Pending() {
+		super();
 	}
 	
 	public String getAccountType() {

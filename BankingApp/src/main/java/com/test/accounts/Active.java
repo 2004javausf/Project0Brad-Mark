@@ -8,8 +8,8 @@ public class Active extends Account{
 	private String accountType = "Active";
 	
 	
-	public Active(ArrayList<Customer> accountHolder, double balance) {
-		super(accountHolder, balance);
+	public Active() {
+		super();
 	}
 	
 	//methods

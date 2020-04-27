@@ -1,15 +1,18 @@
 package com.test.users;
 
-abstract class User {
-	protected String username;
+class User {
+	protected String username = "bob";
 	protected String password;
+	
+	
+	
 	
 	public String getUsername() {
 		return username;
-	}
+		}
 	public void setUsername(String username) {
-		this.username = username;
-	}
+	this.username = username;
+}
 	public String getPassword() {
 		return password;
 	}
