@@ -1,0 +1,115 @@
+------------------------------------TODO: make these-----------------------------------------
+Bank
+	String currentUserTpye;
+	Customer aciveCustomer;
+	Account activeAccount;
+		.setcurrentUserType()  //gets customer username, sets currentUserType
+		.setActiveCustomer(username) 
+		.setActiveAccount(account) 
+
+class valid  
+	//all functions return boolean
+	.username(String username) check length,
+	.password(String password) check length
+	.availableUsername(String username) check if available
+	.usernamePasswordCorrect(String username, String password) if they match the banks records
+	.hasAvailableFunds(account, balance)
+	.ammoutPositive(amount)
+MainMenu
+	boolean exitSelected=false;
+	Menu nextMenu;
+	.runMenu(boolean exitSelected); runs through this loop until exit is selected
+		.runHeader(nextMenu.getHeader()) displays header
+		.choseOption(nextMenu.getOptions); displaysAvailable options and prompts choice
+		.runOption(nextMenu.getOptions[choseOptionInput])
+		.chooseMenu(Menu menu); sets nextMenu
+		.clearTerminal(); not sure if you can do this
+		.runMenu()
+BankingServices
+	.withdraw
+	.deposit
+	.transfer
+Menu
+	String header; //displays information and lists
+	ArrayList<Options> options;
+Option
+	
+MenuServices
+	.displayOptions(Menu ... menus)  
+------------------------------------Menu Breakdown------------------------------------------
+
+new Menu startingMenu
+	Option.logIn()
+		//prompts to get the required input
+		valid.availableUsername(!username)
+		valid.correctPassword(username,password)
+		valid.usernamePassword(username,password)
+		Input->selectActiveCustomer(username) 
+		navigateSwitch(Bank.currentUserType)[customerMenu, employeeMenu, adminMenu]
+	Option.registerNewUser()
+		//prompts to get the required input
+		valid.username(username)
+		valid.availableUsername(username)
+		valid.password(password)
+		Input->CustomerServices.addCustomer(username, password)
+		navigateSwitch()[customerMenu]
+	Option.back()
+		
+	
+new Menu customerMenu
+	//if currentUserType = !Employee; Option.addNewPendingAccount
+		Input->AccountServices.addPendingAccount(initialDeposit, varArgs username)
+		navigate()[customerMenu]
+	Option.listAccounts
+		//if currentUserType = customer; header List<Accounts> CustomerService.getCustomerAccounts(username) 
+		//if currentUserType = !customer; header List<Accounts> CustomerServices.getAllAccounts()
+		valid.account(accountNumber)
+		Input->selectCurrentAccount(account)
+		navigateSwitch()[accountMenu]
+	Option.back()  //navigateSwitch(Bank.currentUserType)[startingMenu,employeeMenu,adminMenu]
+	
+					
+new Menu accountMenu
+	header = Account.toString();
+	//if currentUserType = employee; only gets Option.changeAccountStatus
+	//if currentUserType = Customer; does not get Option.changeAccountStatus
+	Option.withdraw
+		//prompts to get the required input
+		valid.hasAvailableFunds(account, amount)
+		valid.ammoutPositive(amount)
+		Input->BankingServices.withdraw(account,amount)
+		navigateSwitch[accountMenu]
+	Option.deposit
+		//prompts to get the required input
+		valid.ammountPositive(amount)
+		Input->BankingServices.deposit(account,amount)
+		navigateSwitch[accountMenu]
+	Option.transfer
+		//prompts to get the required input
+		valid.ammountPositive(amount)
+		valid.hasAvailableFunds(account, amount)
+		BankingServices.transer(account1, account2, amount)
+		navigateSwitch[accountMenu]
+	Option.back //navigateSwitch(Bank.currentUserType)[customerMenu, employeeMenu, adminMenu]
+	
+--------------------------------------Below not completed-----------------------------------
+new Menu employeeMenu
+	Option.listAccounts
+	Option.listCustomers 
+		header CustomerServices.getAllCustomers()
+		valid.Customer(username)
+		Input->selectActiveCustomer(username)
+		navigateSwitch()[accountMenu]
+	Option.runCustomerMenu
+	Option.back 
+		
+
+new Menu adminMenu
+	list of accounts
+	select account
+		change account status
+		transactions
+		remove account
+	list of customers
+	select customer
+		remove customer
