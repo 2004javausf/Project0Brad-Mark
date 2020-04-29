@@ -1,4 +1,4 @@
-package com.test.bank;
+package com.revature.services;
 
 public class BankServices {
 	

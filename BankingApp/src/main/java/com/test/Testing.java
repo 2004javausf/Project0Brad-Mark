@@ -9,8 +9,8 @@ import java.util.Scanner;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import com.test.menu.CustomerMenu;
-import com.test.users.Customer;
+import com.revature.menu.CustomerMenu;
+import com.revature.users.Customer;
 
 class Testing {
 

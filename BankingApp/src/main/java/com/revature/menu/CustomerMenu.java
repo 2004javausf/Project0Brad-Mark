@@ -1,10 +1,8 @@
-package com.test.menu;
+package com.revature.menu;
 
 import java.util.Scanner;
 
-import com.test.accounts.Account;
-import com.test.accounts.Checkings;
-import com.test.accounts.Savings;
+import com.revature.accounts.Account;
 
 public class CustomerMenu {
 	boolean exit;
@@ -90,15 +88,15 @@ public class CustomerMenu {
 						System.out.println("Press an integer please");
 					}
 				}
-				if (accType == 1) {
-					System.out.println("Please enter an inital deposit ammount to your checkings account");
-					acc = new Checkings(deposit);
-				}else if(accType == 2){
-					System.out.println("Please enter an initial deposit amount to your savings account");
-					acc = new Savings(deposit);
-				}else {
-					System.out.println("Please enter a valid option\n");
-				}
+//				if (accType == 1) {
+//					System.out.println("Please enter an inital deposit ammount to your checkings account");
+//					acc = new Checkings(deposit);
+//				}else if(accType == 2){
+//					System.out.println("Please enter an initial deposit amount to your savings account");
+//					acc = new Savings(deposit);
+//				}else {
+//					System.out.println("Please enter a valid option\n");
+//				}
 			}
 			
 			break;

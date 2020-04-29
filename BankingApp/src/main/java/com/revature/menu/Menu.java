@@ -1,11 +1,11 @@
-package com.test.menu;
+package com.revature.menu;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-import com.test.bank.Bank;
-import com.test.users.Customer;
+import com.revature.bank.Bank;
+import com.revature.users.Customer;
 
 public class Menu {
 	static Map<String,String> users = new HashMap<>();

@@ -1,4 +1,4 @@
-package com.test.menu;
+package com.revature.menu;
 
 public class AdminMenu {
 

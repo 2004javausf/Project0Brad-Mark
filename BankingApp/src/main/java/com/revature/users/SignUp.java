@@ -1,4 +1,4 @@
-package com.test.users;
+package com.revature.users;
 
 import java.util.Scanner;
 
