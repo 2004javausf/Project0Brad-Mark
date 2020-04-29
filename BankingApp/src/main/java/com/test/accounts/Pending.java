@@ -25,10 +25,6 @@ public class Pending extends Account{
 		this.status = status;
 	}
 
-	@Override
-	public String toString() {
-		return "Pending [accountType=" + accountType + ", status=" + status + ", accountHolder=" + accountHolder
-				+ ", balance=" + balance + "]";
-	}
+	
 	
 }

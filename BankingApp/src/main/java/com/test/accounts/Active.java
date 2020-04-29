@@ -21,9 +21,6 @@ public class Active extends Account{
 	}
 	
 
-	@Override
-	public String toString() {
-		return "Active [accountType=" + accountType + ", accountHolder=" + accountHolder + ", balance=" + balance + "]";
-	}
+	
 	
 }

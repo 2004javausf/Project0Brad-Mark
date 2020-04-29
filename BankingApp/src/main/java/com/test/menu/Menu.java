@@ -96,12 +96,12 @@ public class Menu {
 					System.out.print("Please enter your password: ");
 					String password = sc.nextLine();
 					if ((users.get(username)).equals(password)) {
-						Customer c = new Customer(username,password);
+						CustomerMenu c = new CustomerMenu(username,password);
 						c.accountMenu();
 					}else {
 					for(int i = 0;i<=3;i++) {
 						if ((users.get(username)).equals(password)) {
-							Customer c = new Customer(username,password);
+							CustomerMenu c = new CustomerMenu(username,password);
 							c.accountMenu();
 						}
 						System.out.println("The password you entered was incorrect. Try again.");

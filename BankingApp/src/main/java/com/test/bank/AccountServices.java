@@ -25,7 +25,7 @@ public class AccountServices {
 
 	public static void writeFileContents() {
 		try {
-			ObjectOutputStream objectOut = new ObjectOutputStream(new FileOutputStream(fileLocation,true));
+			ObjectOutputStream objectOut = new ObjectOutputStream(new FileOutputStream(fileLocation));
 			objectOut.writeObject(workingList);
 			objectOut.close();
 		} catch (FileNotFoundException e) {
