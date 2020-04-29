@@ -1,8 +1,10 @@
 package com.revature.services;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.ListIterator;
 
+import com.revature.accounts.Account;
 import com.revature.bank.Bank;
 import com.revature.users.Customer;
 
@@ -10,8 +12,9 @@ public class CustomerServices {
 //------------------------------------------------------------------
 // CustomerServices
 //			.getCustomer()
+//			.getCustomerAccounts()
 //			.addCustomer()
-//			.listCustomers()
+//			.listAllCustomers()
 //			.removeCustomer()
 //			.editCustomerInfo()
 	
@@ -25,6 +28,20 @@ public class CustomerServices {
 		}
 		return null;
 	}
+	public static ArrayList<Account> getCustomerAccounts(Customer customer) {
+		Iterator<Account> itr = Bank.getAccounts().iterator();
+		ArrayList<Account> customerAccounts = new ArrayList<>();
+		while(itr.hasNext()) {
+			Account accountItr = itr.next();
+			Iterator<Customer> customerItr = accountItr.getAccountHolder().iterator();
+			while(customerItr.hasNext()) {
+				if(customerItr.next().getUsername().equals(customer.getUsername())) {
+					customerAccounts.add(accountItr);
+				}
+			}
+		}
+		return customerAccounts;
+	}
 	public static void addCustomer(String username, String password) {
 		Customer newCustomer = new Customer(username,password);
 		Bank.getCustomers().add(newCustomer);
@@ -34,7 +51,7 @@ public class CustomerServices {
 		Bank.getCustomers().add(customer);
 		Bank.pushAllBankInfo();
 	}
-	public static void listCustomers() {
+	public static void listAllCustomers() {
 		Iterator<Customer> itr = Bank.getCustomers().iterator();
 		System.out.println("All Customers:");
 		while(itr.hasNext()) {

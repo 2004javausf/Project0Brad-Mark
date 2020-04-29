@@ -1,0 +1,43 @@
+Menu.startingMenu
+	Option.logIn
+		//prompts to get the required input
+		Input->selectUser(username, password)
+		navigate(User.userType)[Menu.customerOptions, Menu.employeeOptions, Menu.adminOptions]
+	Option.registerNewUser
+		Input->CustomerServices.addCustomer(username, password)
+		navigate[Menu.customerOptions]
+		
+Menu.customerOptions()
+	String userType;
+	Option.addNewPendingAccount
+		Input->AccountServices.addPendingAccount(initialDeposit, varArgs username)
+		navigate[]
+	Option.listAccounts
+		Display: List<Accounts> CustomerServices.getCustomerAccounts
+		Input->selectAccount
+		navigate[Menu.accountOptions]
+					
+Menu.accountOptions
+	Display: Account.toString()
+	Option.withdraw
+	Option.deposit
+	Option.transfer
+			
+		Employee
+			AccountServices.listAllaccounts()
+				selectAccount
+					AccountService.changePendingStatus()
+			selectAccount
+			CustomerServices.listAllCustomers()
+				selectCustomer
+					CustomerServices.getCustomerAccounts()
+				change account status
+		Admin
+			list of accounts
+			select account
+				change account status
+				transactions
+				remove account
+			list of customers
+			select customer
+				remove customer

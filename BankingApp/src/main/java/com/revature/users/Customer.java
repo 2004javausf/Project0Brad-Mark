@@ -2,10 +2,9 @@ package com.revature.users;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import com.revature.accounts.Account;
-import com.revature.bank.Bank;
+import com.revature.services.CustomerServices;
 
 public class Customer implements Serializable{
 
@@ -39,25 +38,10 @@ public class Customer implements Serializable{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	private ArrayList<Account> findCustomerAccounts() {
-		Iterator<Account> itr = Bank.getAccounts().iterator();
-		ArrayList<Account> customerAccounts = new ArrayList<>();
-		while(itr.hasNext()) {
-			Account account = itr.next();
-			Iterator<Customer> customer = account.getAccountHolder().iterator();
-			while(customer.hasNext()) {
-				if(customer.next().getUsername().equals(this.getUsername())) {
-					customerAccounts.add(account);
-				}
-			}
-		}
-		return customerAccounts;
-	}
 
 	@Override
 	public String toString() {
-		ArrayList<Account> accounts = findCustomerAccounts();
+		ArrayList<Account> accounts = CustomerServices.getCustomerAccounts(this);
 		return "Customer Username: " +username+
 				", Password: "+ password+
 				", Accounts " + accounts +"\n";

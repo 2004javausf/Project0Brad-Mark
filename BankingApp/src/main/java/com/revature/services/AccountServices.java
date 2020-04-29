@@ -13,11 +13,10 @@ public class AccountServices {
 //------------------------------------------------------------------
 // AccountServices
 //		.getAccount()
-//		.listAccounts()
+//		.listAllAccounts()
 //		.addPendingAccount()
 //		.changePendingStatus()
 //		.removeAccount()
-	
 	
 	public static Account getAccount(int accountNumber) {
 		Iterator<Account> itr = Bank.getAccounts().iterator();
@@ -29,7 +28,7 @@ public class AccountServices {
 		}
 		return null;
 	}
-	public static void listAccounts() {
+	public static void listAllAccounts() {
 		Iterator<Account> itr = Bank.getAccounts().iterator();
 		System.out.println("All Accounts:");
 		while(itr.hasNext()) {
