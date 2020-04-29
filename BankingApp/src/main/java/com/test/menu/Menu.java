@@ -93,6 +93,23 @@ public class Menu {
 				i1++;
 				if (users.containsKey(username)) {
 					System.out.println("Your username is: "+username);
+					if (username.equals("Admin")) {
+						System.out.print("Please enter your password: ");
+						String password = sc.nextLine();
+						if((users.get(username)).equals(password)) {
+								CustomerMenu c = new CustomerMenu(username,password);
+								c.accountMenu();
+						}
+					}
+					if (username.equals("Employee")) {
+						System.out.print("Please enter your password: ");
+						String password = sc.nextLine();
+						if((users.get(username)).equals(password)) {
+								CustomerMenu c = new CustomerMenu(username,password);
+								c.accountMenu();
+						}
+					}
+					
 					System.out.print("Please enter your password: ");
 					String password = sc.nextLine();
 					if ((users.get(username)).equals(password)) {

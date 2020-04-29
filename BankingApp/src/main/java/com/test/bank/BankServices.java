@@ -7,8 +7,8 @@ public class BankServices {
 		System.out.println(Balance);
 	}
 
-public void deposit(double Balance, double Deposit) {
-	Balance = Balance - Deposit;
-	System.out.println(Balance);
-}
+	public void deposit(double Balance, double Deposit) {
+		Balance = Balance - Deposit;
+		System.out.println(Balance);
+	}
 }
