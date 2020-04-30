@@ -1,12 +1,19 @@
 package com.revature.menu;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
+import com.revature.accounts.Account;
+import com.revature.bank.Bank;
 import com.revature.services.AccountServices;
+import com.revature.services.CustomerServices;
+import com.revature.users.Customer;
 
 public class EmployeeMenu {
 	static boolean exit;
 	static Scanner sc = new Scanner(System.in);
+	static Scanner boo = new Scanner(System.in);
 	
 	public static void runEmployeeMenu() {
 		while (!exit) {
@@ -57,10 +64,25 @@ public class EmployeeMenu {
 		switch (option) {
 		case 1: 
 			//call all customer info like how it is in customer menu for one
-			System.out.println("employee menu!");
+			CustomerServices.listAllCustomers();
+			AccountServices.listAllAccounts();
+			System.out.println(Bank.getCustomers());
+			
+			// make option to exit
 			break;
 		case 2:
+			CustomerServices.listAllCustomers();
 			AccountServices.listAllAccounts();
+			AccountServices.showPendingAccount();
+			System.out.println("Enter the account number of the account you would you like to access");
+			int option1 = Integer.parseInt(sc.nextLine());
+			System.out.println("Approve or decline(t/f)");
+			String c = sc.nextLine();
+			boolean d = false;
+			if(c.equals("t")) {
+				d = true;
+			}
+			AccountServices.changePendingAccount(AccountServices.getAccount(option1),d);
 			break;
 		case 3:
 			System.out.println("Thank you, have a nice day");

@@ -38,9 +38,10 @@ public class AccountServices {
 		}
 		System.out.println();
 	}
-	public static void addPendingAccount(Account newAccount, String accountType) {
+	public static void addPendingAccount(double initialDeposit, Account newAccount, String accountType) {
 		Bank.getAccounts().add(newAccount);
 		newAccount.setAccountType(accountType);
+		newAccount.setBalance(initialDeposit);
 		System.out.println("Added account: " + newAccount.getAccountNumber()+"\n");
 		Bank.pushAllBankInfo();
 	}
@@ -65,6 +66,7 @@ public class AccountServices {
 	public static void addToAccount(int accountNumber, Customer customer) {
 		Account account = getAccount(accountNumber);
 		ArrayList<Customer> two = account.getAccountHolder();
+		account.setAccountType("Pending");
 		two.add(customer);
 		account.setAccountHolder(two);
 		Bank.pushAllBankInfo();
@@ -104,6 +106,16 @@ public class AccountServices {
 			Account currAccount = itr.next();
 			if(currAccount.getAccountStatus().equals("Pending")) {
 				System.out.println(currAccount.getAccountNumber());
+			}
+		}
+	}
+	
+	public static void showPendingAccount() {
+		ListIterator<Account> itr = Bank.getAccounts().listIterator();
+		while(itr.hasNext()) {
+			Account currAccount = itr.next();
+			if(currAccount.getAccountStatus().equals("Pending")) {
+				System.out.println(currAccount.getAccountHolder());
 			}
 		}
 	}

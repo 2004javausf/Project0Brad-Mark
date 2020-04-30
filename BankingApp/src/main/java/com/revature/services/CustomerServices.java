@@ -54,6 +54,7 @@ public class CustomerServices {
 		}
 		return customerAccounts;
 	}
+	
 	public static void addCustomer(String username, String password) {
 		Customer newCustomer = new Customer(username,password);
 		Bank.getCustomers().add(newCustomer);

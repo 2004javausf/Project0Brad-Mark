@@ -19,7 +19,7 @@ public class Menu {
 	public static void main(String[] args) {
 		Bank bank = new Bank();
 		bank.pullAllBankInfo();
-		Bank.getCustomers(); // make into a hashmap
+		Bank.getCustomers();
 		Menu m = new Menu();
 		users.putAll(CustomerServices.getHashCustomer());
 		m.runMenu();
@@ -29,6 +29,7 @@ public class Menu {
 	
 	public void runMenu() {
 		while (!exit) {
+			System.out.println("\u001B[36m"+"=========================\n\nWelcome to the blue boyz bank\n\n=========================\n"+"\u001B[0m");
 			printMenu();
 			int option = userInput();
 			optionSelect(option);
@@ -221,7 +222,6 @@ public class Menu {
 							String test = sc.nextLine();
 							if(test.equals(password)) {
 								System.out.println("Passwords match.");
-								//take them to accounts to enter in more info or something i dnno
 								CustomerServices.addCustomer(username, test);
 								CustomerMenu c = new CustomerMenu(username,test);
 								c.accountMenu();

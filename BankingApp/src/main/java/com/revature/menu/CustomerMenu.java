@@ -1,5 +1,6 @@
 package com.revature.menu;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.revature.accounts.Account;
@@ -211,21 +212,21 @@ public class CustomerMenu {
 				if (accType == 1) {
 					System.out.println("Please enter an inital deposit ammount to your checkings account");
 					double deposit1 = dub.nextDouble();
-					if (deposit1<=100.00) {
+					if (deposit1<100.00) {
 						System.out.println("Need an initial deposit of $100 or more for a checkings account");
 					}else {
 						acc.setBalance(deposit1);
-						AccountServices.addPendingAccount(acc, "Checkings");
+						AccountServices.addPendingAccount(deposit1 ,acc, "Checkings");
 						System.out.println("Please wait for an employee to approve your account");
 					}
 				}else if(accType == 2){
 					System.out.println("Please enter an initial deposit amount to your savings account");
 					double deposit1 = dub.nextDouble();
-					if (deposit1<=50) {
+					if (deposit1<50) {
 						System.out.println("Need an initial deposit of $50 or more");
 					}else {
 						acc.setBalance(deposit1);
-						AccountServices.addPendingAccount(acc, "Savings");
+						AccountServices.addPendingAccount(deposit1, acc, "Savings");
 						System.out.println("Please wait for an employee to approve your account");
 					}
 				}else {

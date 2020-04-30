@@ -2,12 +2,18 @@ package com.revature.menu;
 
 import java.util.Scanner;
 
+import com.revature.accounts.Account;
+import com.revature.bank.Bank;
 import com.revature.services.AccountServices;
+import com.revature.services.BankServices;
+import com.revature.services.CustomerServices;
+import com.revature.users.Customer;
 
 public class AdminMenu {
 
 	static boolean exit;
 	static Scanner sc = new Scanner(System.in);
+	static Scanner dub = new Scanner(System.in);
 	
 	public static void runAdminMenu() {
 		while (!exit) {
@@ -58,6 +64,9 @@ public class AdminMenu {
 		switch (option) {
 		case 1: 
 			//call all customer info like how it is in customer menu for one
+			CustomerServices.listAllCustomers();
+			AccountServices.listAllAccounts();
+			System.out.println(Bank.getCustomers());
 			System.out.println("Would you like to 1 Edit an account or 2 Return to admin menu");
 			int i = 0;
 			int choice  = 200;
@@ -80,7 +89,114 @@ public class AdminMenu {
 			switch(choice) {
 			case 1:
 				// all the stuff we can do in account and add delete method
-				System.out.println("admin Choice 1!");
+//				Customer cust = CustomerServices.getCustomer(username);
+				
+				System.out.println("What account would you like to access");
+				int accountNumber = Integer.parseInt(sc.nextLine());
+				Account acc = AccountServices.getAccount(accountNumber);
+				System.out.println("Would you like to \n1 deposit \n2 withdraw \n3 transfer \n4 remove the account");
+				int option2 = Integer.parseInt(sc.nextLine());
+				switch (option2) {
+				case 1:
+					boolean a = false;
+					int d = 0;
+					while(!a) {
+						System.out.println("How much money would you like to deposit?");
+						double deposit = dub.nextDouble();
+						BankServices.deposit(acc, deposit);
+						System.out.println("Would you like to make another deposit? 1 for yes 2 for no.");
+						try {
+							 d = Integer.parseInt(sc.nextLine());
+						}catch(Exception e){
+							i++;
+							if(i>5) {
+								System.out.println("Too many invalid attempts, you will be exited from the application");
+								a = true;
+								System.exit(0);
+							}
+							if(i>2) {
+								System.out.println("Press an integer please");
+							}
+							if(d>2||d<1) {
+								System.out.println("Please enter a valid option");
+							}
+							
+						}
+						if (d == 2) {
+							a = true;
+						}
+					}
+					break;
+				case 2:
+					int d1 = 0;
+					boolean a1 = false;
+					while(!a1) {
+						System.out.println("How much money would you like to withdraw?");
+						double withdraw = dub.nextDouble();
+						BankServices.withdraw(acc, withdraw);
+						System.out.println("Would you like to make another withdrawl? 1 for yes 2 for no.");
+						try {
+							 d1 = Integer.parseInt(sc.nextLine());
+						}catch(Exception e){
+							i++;
+							if(i>5) {
+								System.out.println("Too many invalid attempts, you will be exited from the application");
+								a = true;
+								System.exit(0);
+							}
+							if(i>2) {
+								System.out.println("Press an integer please");
+							}
+							if(d1>2||d1<1) {
+								System.out.println("Please enter a valid option");
+							}
+							
+						}
+						if (d1 == 2) {
+							a = true;
+						}
+					}
+					break;
+				case 3:
+					boolean a2 = false;
+					int d2 = 0;
+					int dd = 0;
+					while(!a2) {
+						System.out.println("What account would you like to transfer your funds to?");
+						System.out.println(acc);
+						dd = Integer.parseInt(sc.nextLine());
+						System.out.println("How much money would you like to transfer?");
+						double transfer = dub.nextDouble();
+						BankServices.transfer(AccountServices.getAccount(choice), AccountServices.getAccount(dd), transfer);
+						System.out.println("Would you like to make another transfer? 1 for yes 2 for no.");
+						try {
+							 d2 = Integer.parseInt(sc.nextLine());
+						}catch(Exception e){
+							i++;
+							if(i>5) {
+								System.out.println("Too many invalid attempts, you will be exited from the application");
+								a = true;
+								System.exit(0);
+							}
+							if(i>2) {
+								System.out.println("Press an integer please");
+							}
+							if(d2>2||d2<1) {
+								System.out.println("Please enter a valid option");
+							}
+							
+						}
+						if (d2 == 2) {
+							a = true;
+						}
+					}
+					break;
+				case 4:
+					AccountServices.removeAccount(accountNumber);
+					break;
+				default:
+					break;
+				}
 				break;
 			case 2:
 				runAdminMenu();
@@ -90,7 +206,18 @@ public class AdminMenu {
 			}
 			break;
 		case 2:
+			CustomerServices.listAllCustomers();
 			AccountServices.listAllAccounts();
+			AccountServices.showPendingAccount();
+			System.out.println("Enter the account number of the account you would you like to access");
+			int option1 = Integer.parseInt(sc.nextLine());
+			System.out.println("Approve or decline(t/f)");
+			String c = sc.nextLine();
+			boolean d = false;
+			if(c.equals("t")) {
+				d = true;
+			}
+			AccountServices.changePendingAccount(AccountServices.getAccount(option1),d);
 			break;
 		case 3:
 			System.out.println("Thank you, have a nice day");

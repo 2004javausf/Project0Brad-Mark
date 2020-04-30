@@ -22,12 +22,13 @@ public class Driver {
 		//c.accountMenu();
 		CustomerServices.listAllCustomers();
 		AccountServices.listAllAccounts();
+		
 //		System.out.println(AccountServices.getAccount(1000));
 //		AccountServices.addToAccount(1000, CustomerServices.getCustomer("Brad"));
 //		System.out.println(AccountServices.getAccount(1000));
-//		AccountServices.changePendingAccount(AccountServices.getAccount(1000), true);
+//		AccountServices.changePendingAccount(AccountServices.getAccount(1001), true);
 //		AccountServices.checkPendingAccount();
-		EmployeeMenu.runEmployeeMenu();
+		AdminMenu.runAdminMenu();
 //		//example customer
 //		Customer exampleCustomer = new Customer("Brad","Mark");
 		
@@ -36,7 +37,8 @@ public class Driver {
 //		ArrayList<Customer> accountHolders = new ArrayList<>();
 //		accountHolders.add(exampleCustomer);
 //		double initialBalance = 1000000.00;
-//		Account exampleAccount = new Account(initialBalance, accountHolders);
+//		Account exampleAccount = new Account();
+//		System.out.println(exampleAccount.getAccountHolder());
 		
 //		BankServices.withdraw(AccountServices.getAccount(1000), 10);
 //		BankServices.deposit(AccountServices.getAccount(1000), 20);
@@ -47,6 +49,7 @@ public class Driver {
 //		AccountServices.addPendingAccount(exampleAccount);
 //		bank.pullAllBankInfo();
 //		System.out.println(CustomerServices.getCustomer("customerName"));
+		
 	}
 
 }
