@@ -1,8 +1,10 @@
 package com.revature.services;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.ListIterator;
+import java.util.Map;
 
 import com.revature.accounts.Account;
 import com.revature.bank.Bank;
@@ -27,6 +29,16 @@ public class CustomerServices {
 			}
 		}
 		return null;
+	}
+	
+	public static Map<String,String> getHashCustomer() {
+		Iterator<Customer> itr = Bank.getCustomers().iterator();
+		Map<String,String> users = new HashMap<>();
+		while(itr.hasNext()) {
+			Customer currCustomer = itr.next();
+			users.put(currCustomer.getUsername(), currCustomer.getPassword());
+		}
+		return users;
 	}
 	public static ArrayList<Account> getCustomerAccounts(Customer customer) {
 		Iterator<Account> itr = Bank.getAccounts().iterator();

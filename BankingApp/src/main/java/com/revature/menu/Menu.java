@@ -5,10 +5,11 @@ import java.util.Map;
 import java.util.Scanner;
 
 import com.revature.bank.Bank;
+import com.revature.services.CustomerServices;
 import com.revature.users.Customer;
 
 public class Menu {
-	static Map<String,String> users = new HashMap<>();
+	static Map<String,String> users = new HashMap<String,String>();
 	
 	
 	Scanner sc = new Scanner(System.in);
@@ -16,9 +17,11 @@ public class Menu {
 	boolean exit;
 	
 	public static void main(String[] args) {
-		users.put("bob","bob");
-		users.put("man","man");
+		Bank bank = new Bank();
+		bank.pullAllBankInfo();
+		Bank.getCustomers(); // make into a hashmap
 		Menu m = new Menu();
+		users.putAll(CustomerServices.getHashCustomer());
 		m.runMenu();
 	}
 	
@@ -91,24 +94,16 @@ public class Menu {
 				System.out.print("Please enter your username: ");
 				String username = sc.nextLine();
 				i1++;
-				if (users.containsKey(username)) {
+				if (username.equals("Employee")) {
+					System.out.print("Please enter your password: ");
+					String password = sc.nextLine();
+					if(password.equals("Employee")) {
+							EmployeeMenu.runEmployeeMenu();
+					}
+				}else if (users.containsKey(username)) {
 					System.out.println("Your username is: "+username);
-					if (username.equals("Admin")) {
-						System.out.print("Please enter your password: ");
-						String password = sc.nextLine();
-						if((users.get(username)).equals(password)) {
-								CustomerMenu c = new CustomerMenu(username,password);
-								c.accountMenu();
-						}
-					}
-					if (username.equals("Employee")) {
-						System.out.print("Please enter your password: ");
-						String password = sc.nextLine();
-						if((users.get(username)).equals(password)) {
-								CustomerMenu c = new CustomerMenu(username,password);
-								c.accountMenu();
-						}
-					}
+				
+	
 					
 					System.out.print("Please enter your password: ");
 					String password = sc.nextLine();
@@ -130,6 +125,12 @@ public class Menu {
 						}
 					}
 				}
+				}else if (username.equals("Admin")) {
+					System.out.print("Please enter your password: ");
+					String password = sc.nextLine();
+					if(password.equals("Admin")) {
+							AdminMenu.runAdminMenu();
+					}
 				}
 				else if(username.equals("exit")) {
 					System.exit(0);
@@ -198,9 +199,10 @@ public class Menu {
 					private void createAccount() {
 						int i = 0;
 						boolean taken = false;
+						String username = null;
 						while(!taken) {
 							System.out.print("Please enter your preferred username: ");
-							String username = sc.nextLine();
+							username = sc.nextLine();
 							//if the username is in our list make a statement saying it is a taken username
 							if(users.containsKey(username)) {
 								System.out.println("Sorry this username is taken");
@@ -220,7 +222,9 @@ public class Menu {
 							if(test.equals(password)) {
 								System.out.println("Passwords match.");
 								//take them to accounts to enter in more info or something i dnno
-								System.exit(0);
+								CustomerServices.addCustomer(username, test);
+								CustomerMenu c = new CustomerMenu(username,test);
+								c.accountMenu();
 							}
 							else {
 								if (i>3) {
