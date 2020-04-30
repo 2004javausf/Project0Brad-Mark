@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.revature.accounts.Account;
+import com.revature.bank.Bank;
 import com.revature.services.AccountServices;
 import com.revature.services.BankServices;
 import com.revature.services.CustomerServices;
@@ -16,13 +17,16 @@ public class CustomerMenu {
 	private String password;
 	private String username;
 	
+	
+	
 	public CustomerMenu(String username, String password) {
 		this.username=username;
 		this.password=password;
 	}
 	
 	public void accountMenu(){
-		
+		Bank bank = new Bank();
+		bank.pullAllBankInfo();
 		while(!exit) {
 		printAMenu();
 		int option = userAInput();
@@ -194,8 +198,12 @@ public class CustomerMenu {
 			System.out.println("What type of account would you like to apply for?");
 			System.out.println("1 Checkings");
 			System.out.println("2 Savings");
+			System.out.println("3 Return to account menu");
 			acc = new Account();
 			
+			ArrayList<Customer> arCust = new ArrayList<Customer>();
+			arCust.add(cust);
+			acc.setAccountHolder(arCust);
 			
 				try {
 					accType = Integer.parseInt(sc.nextLine());
@@ -231,6 +239,7 @@ public class CustomerMenu {
 					}
 				}else {
 					System.out.println("Please enter a valid option\n");
+					accountMenu();
 				}
 			}
 			

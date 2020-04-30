@@ -13,7 +13,7 @@ public class Menu {
 	
 	
 	Scanner sc = new Scanner(System.in);
-	Bank bank;
+	public static Bank bank;
 	boolean exit;
 	
 	public static void main(String[] args) {
@@ -28,6 +28,7 @@ public class Menu {
 	
 	
 	public void runMenu() {
+		users.putAll(CustomerServices.getHashCustomer());
 		while (!exit) {
 			System.out.println("\u001B[36m"+"=========================\n\nWelcome to the blue boyz bank\n\n=========================\n"+"\u001B[0m");
 			printMenu();
