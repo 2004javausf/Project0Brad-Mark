@@ -18,7 +18,7 @@
   - withdrawing, depositing, transferring from all accounts
   - canceling accounts
 - [x] All information should be persisted using text files and serialization
-- [x] 100% test coverage is expected using J-Unit
+- [] 100% test coverage is expected using J-Unit
   - You should be using TDD
 
 
