@@ -65,7 +65,7 @@ public class CustomerMenu {
 			}
 		}
 		if(1>option||option>4) {
-			System.out.println("Please enter one of the three options. 1 for Access accounts, 2 for Apply for a new account, 3 Apply for a joint account, or 4 Exit");
+			System.out.println("Please enter one of the four options. 1 for Access accounts, 2 for Apply for a new account, 3 Apply for a joint account, or 4 Exit");
 		}
 		
 	}while ((1>option||option>4));
@@ -82,23 +82,28 @@ public class CustomerMenu {
 
 		switch (option) {
 		case 1: 
-			System.out.println("Welcome to your account page");
+			System.out.println("\n\n\n\n\n\n\n\n====================================");
+			System.out.println("\nWelcome to your account page\n");
+			System.out.println("===================================");
 			System.out.println(CustomerServices.getCustomerAccounts(CustomerServices.getCustomer(username)));
-			System.out.println("Which account would you like to access");
+			System.out.println("\nType the number of the account you would like to access or press 0 to return to main menu");
 			int choice = Integer.parseInt(sc.nextLine());
 			System.out.println(AccountServices.getAccount(choice));
+			if (choice == 0) {
+				accountMenu();
+			}
 			acc = AccountServices.getAccount(choice);
-			System.out.println("Would you like to make a \n1 Deposit \n2 Withdrawl \n3 Transfer\n4 Return to the menu");
+			System.out.println("Choose which option you would like to choose \n1 Deposit \n2 Withdrawl \n3 Transfer\n4 Return to the main menu");
 			accType = Integer.parseInt(sc.nextLine());
 			
 			switch (accType) {
 			case 1: {
 				int d = 0;
 				while(!a) {
-					System.out.println("How much money would you like to deposit?");
+					System.out.println("\nHow much money would you like to deposit?");
 					double deposit = dub.nextDouble();
 					BankServices.deposit(acc, deposit);
-					System.out.println("Would you like to make another deposit? 1 for yes 2 for no.");
+					System.out.println("\nWould you like to make another deposit? 1 for yes 2 for no.");
 					try {
 						 d = Integer.parseInt(sc.nextLine());
 					}catch(Exception e){
@@ -117,6 +122,7 @@ public class CustomerMenu {
 						
 					}
 					if (d == 2) {
+						System.out.println("\nReturning to main menu");
 						a = true;
 					}
 				}
@@ -125,10 +131,10 @@ public class CustomerMenu {
 			case 2:{
 				int d = 0;
 				while(!a) {
-					System.out.println("How much money would you like to withdraw?");
+					System.out.println("\nHow much money would you like to withdraw?");
 					double withdraw = dub.nextDouble();
 					BankServices.withdraw(acc, withdraw);
-					System.out.println("Would you like to make another withdrawl? 1 for yes 2 for no.");
+					System.out.println("\nWould you like to make another withdrawl? 1 for yes 2 for no.");
 					try {
 						 d = Integer.parseInt(sc.nextLine());
 					}catch(Exception e){
@@ -147,6 +153,7 @@ public class CustomerMenu {
 						
 					}
 					if (d == 2) {
+						System.out.println("Returning to main menu\n");
 						a = true;
 					}
 				}
@@ -181,15 +188,16 @@ public class CustomerMenu {
 						
 					}
 					if (d == 2) {
+						System.out.println("Returning to main menu\n");
 						a = true;
 					}
 				}
 				break;
 			case 4:
-				System.out.println("Returning to main menu");
+				System.out.println("Returning to main menu\n");
 				break;
 			default:
-				System.out.println("Returning to main menu");
+				System.out.println("Returning to main menu\n");
 				break;
 			}
 			break;
@@ -198,9 +206,9 @@ public class CustomerMenu {
 			System.out.println("What type of account would you like to apply for?");
 			System.out.println("1 Checkings");
 			System.out.println("2 Savings");
-			System.out.println("3 Return to account menu");
+			System.out.println("3 Return to main menu");
 			acc = new Account();
-			
+			boolean b = false;
 			ArrayList<Customer> arCust = new ArrayList<Customer>();
 			arCust.add(cust);
 			acc.setAccountHolder(arCust);
@@ -220,25 +228,30 @@ public class CustomerMenu {
 				if (accType == 1) {
 					System.out.println("Please enter an inital deposit ammount to your checkings account");
 					double deposit1 = dub.nextDouble();
+					while(!b) {
 					if (deposit1<100.00) {
 						System.out.println("Need an initial deposit of $100 or more for a checkings account");
 					}else {
 						acc.setBalance(deposit1);
 						AccountServices.addPendingAccount(deposit1 ,acc, "Checkings");
 						System.out.println("Please wait for an employee to approve your account");
+						System.out.println("Returning to main menu");
+						accountMenu();
 					}
-				}else if(accType == 2){
+				}}else if(accType == 2){
 					System.out.println("Please enter an initial deposit amount to your savings account");
 					double deposit1 = dub.nextDouble();
+					while(!b) {
 					if (deposit1<50) {
 						System.out.println("Need an initial deposit of $50 or more");
 					}else {
 						acc.setBalance(deposit1);
 						AccountServices.addPendingAccount(deposit1, acc, "Savings");
 						System.out.println("Please wait for an employee to approve your account");
+						System.out.println("Returning to main menu");
+						accountMenu();
 					}
-				}else {
-					System.out.println("Please enter a valid option\n");
+				}}else {
 					accountMenu();
 				}
 			}
@@ -254,6 +267,7 @@ public class CustomerMenu {
 			System.exit(0);
 		default:
 			System.out.println("how?");
+			System.exit(0);
 			break;
 		}
 	}

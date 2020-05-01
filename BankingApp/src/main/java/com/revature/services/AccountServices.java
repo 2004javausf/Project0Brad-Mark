@@ -70,6 +70,7 @@ public class AccountServices {
 		two.add(customer);
 		account.setAccountHolder(two);
 		Bank.pushAllBankInfo();
+		System.out.println("Please wait for an employee or admin to approve your joint account");
 	}
 	public static void changePendingAccount(Account pendingAccount, boolean isApproved) {
 		ListIterator<Account> itr = Bank.getAccounts().listIterator();

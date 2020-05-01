@@ -74,9 +74,12 @@ public class EmployeeMenu {
 			CustomerServices.listAllCustomers();
 			AccountServices.listAllAccounts();
 			AccountServices.showPendingAccount();
-			System.out.println("Enter the account number of the account you would you like to access");
+			System.out.println("Enter the account number of the account you would you like to access or press 0 to exit");
 			int option1 = Integer.parseInt(sc.nextLine());
-			System.out.println("Approve or decline(t/f)");
+			if(option1 == 0) {
+				System.exit(0);
+			}
+			System.out.println("Approve or decline(press [t] to approve/press [f] to decline)");
 			String c = sc.nextLine();
 			boolean d = false;
 			if(c.equals("t")) {

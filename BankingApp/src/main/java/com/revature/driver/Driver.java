@@ -19,16 +19,16 @@ public class Driver {
 		//Create bank object and pull all bank info from documents
 		Bank bank = new Bank();
 		bank.pullAllBankInfo();
-//		Menu m = new Menu();
-//		m.runMenu();
+		Menu m = new Menu();
+		m.runMenu();
 		
 
 		
 		//CustomerMenu c = new CustomerMenu("Brad", "Mark");
-		//c.accountMenu();
+		//c.accountMenu();LOLO
 //		CustomerServices.listAllCustomers();
 //		AccountServices.listAllAccounts();
-		System.out.println(Bank.getAccounts());
+//		System.out.println(Bank.getAccounts());
 //		System.out.println(AccountServices.getAccount(1000));
 //		AccountServices.addToAccount(1000, CustomerServices.getCustomer("Brad"));
 //		System.out.println(AccountServices.getAccount(1000));

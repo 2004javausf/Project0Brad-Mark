@@ -30,7 +30,7 @@ public class Menu {
 	public void runMenu() {
 		users.putAll(CustomerServices.getHashCustomer());
 		while (!exit) {
-			System.out.println("\u001B[36m"+"=========================\n\nWelcome to the blue boyz bank\n\n=========================\n"+"\u001B[0m");
+			System.out.println("\u001B[36m"+"=============================\n\nWelcome to M&B's Banc\n\n=============================\n"+"\u001B[0m");
 			printMenu();
 			int option = userInput();
 			optionSelect(option);

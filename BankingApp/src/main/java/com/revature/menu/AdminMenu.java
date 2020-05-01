@@ -91,20 +91,20 @@ public class AdminMenu {
 				// all the stuff we can do in account and add delete method
 //				Customer cust = CustomerServices.getCustomer(username);
 				
-				System.out.println("What account would you like to access");
+				System.out.println("\nWhat account would you like to access");
 				int accountNumber = Integer.parseInt(sc.nextLine());
 				Account acc = AccountServices.getAccount(accountNumber);
-				System.out.println("Would you like to \n1 deposit \n2 withdraw \n3 transfer \n4 remove the account");
+				System.out.println("\nWould you like to \n1 deposit \n2 withdraw \n3 transfer \n4 remove the account");
 				int option2 = Integer.parseInt(sc.nextLine());
 				switch (option2) {
 				case 1:
 					boolean a = false;
 					int d = 0;
 					while(!a) {
-						System.out.println("How much money would you like to deposit?");
+						System.out.println("\nHow much money would you like to deposit?");
 						double deposit = dub.nextDouble();
 						BankServices.deposit(acc, deposit);
-						System.out.println("Would you like to make another deposit? 1 for yes 2 for no.");
+						System.out.println("\nWould you like to make another deposit? 1 for yes 2 for no.");
 						try {
 							 d = Integer.parseInt(sc.nextLine());
 						}catch(Exception e){
@@ -131,10 +131,10 @@ public class AdminMenu {
 					int d1 = 0;
 					boolean a1 = false;
 					while(!a1) {
-						System.out.println("How much money would you like to withdraw?");
+						System.out.println("\nHow much money would you like to withdraw?");
 						double withdraw = dub.nextDouble();
 						BankServices.withdraw(acc, withdraw);
-						System.out.println("Would you like to make another withdrawl? 1 for yes 2 for no.");
+						System.out.println("\nWould you like to make another withdrawl? 1 for yes 2 for no.");
 						try {
 							 d1 = Integer.parseInt(sc.nextLine());
 						}catch(Exception e){
@@ -162,13 +162,13 @@ public class AdminMenu {
 					int d2 = 0;
 					int dd = 0;
 					while(!a2) {
-						System.out.println("What account would you like to transfer your funds to?");
+						System.out.println("\nWhat account would you like to transfer your funds to?");
 						System.out.println(acc);
 						dd = Integer.parseInt(sc.nextLine());
-						System.out.println("How much money would you like to transfer?");
+						System.out.println("\nHow much money would you like to transfer?");
 						double transfer = dub.nextDouble();
 						BankServices.transfer(AccountServices.getAccount(choice), AccountServices.getAccount(dd), transfer);
-						System.out.println("Would you like to make another transfer? 1 for yes 2 for no.");
+						System.out.println("\nWould you like to make another transfer? 1 for yes 2 for no.");
 						try {
 							 d2 = Integer.parseInt(sc.nextLine());
 						}catch(Exception e){
@@ -209,9 +209,12 @@ public class AdminMenu {
 			CustomerServices.listAllCustomers();
 			AccountServices.listAllAccounts();
 			AccountServices.showPendingAccount();
-			System.out.println("Enter the account number of the account you would you like to access");
+			System.out.println("Enter the account number of the account you would you like to access or press 0 to return to main menu");
 			int option1 = Integer.parseInt(sc.nextLine());
-			System.out.println("Approve or decline(t/f)");
+			if(option1 == 0) {
+				runAdminMenu();
+			}
+			System.out.println("Approve or decline(press [t] to approve/press [f] to decline)");
 			String c = sc.nextLine();
 			boolean d = false;
 			if(c.equals("t")) {
