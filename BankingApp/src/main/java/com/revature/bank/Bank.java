@@ -19,12 +19,17 @@ import com.revature.users.Customer;
 public class Bank {
 	private static  ArrayList<Customer> customers = new ArrayList<>();
 	private static  ArrayList<Account> accounts = new ArrayList<>();
-	private static  int accountNumCount = 0;
+	private static  int accountNumCount = 1000;
 	private  final static String customerFile="Customers.txt";
 	private  final static String accountFile="Accounts.txt";
 	private  final static String accountNumberFile="AccountNumberTracker.txt";
 	
 	public Bank(){
+	}
+	public Bank(ArrayList<Customer> customers,ArrayList<Account> accounts) {
+		this.customers = customers;
+		this.accounts = accounts;
+		this.accountNumCount = pullAccountNumber();
 	}
 //Getters and setters ----------------------------------------------------------------
 	public void pullAllBankInfo() {

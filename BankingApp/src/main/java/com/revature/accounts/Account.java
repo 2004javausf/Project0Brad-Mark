@@ -15,13 +15,26 @@ public class Account implements Serializable{
 	private ArrayList<Customer> accountHolder;
 	private int accountNumber;
 	
+	
+	public Account() {
+		super();
+		this.balance = 0;
+		this.accountHolder = new ArrayList<Customer>();
+		this.accountNumber = nextAccountNumber();
+		this.accountStatus = "Pending";
+	}
+	public Account(String test) {
+		super();
+	}
 	public Account(double initialDeposit, ArrayList<Customer> accountHolder){
 		this.accountStatus = "Pending";
 		this.balance = initialDeposit;
 		this.accountHolder = accountHolder;
 		this.accountNumber = nextAccountNumber();
 	}
-	
+	public void setAccountNumber(int accountNumber) {
+		this.accountNumber = accountNumber;
+	}
 	private int nextAccountNumber() {
 		int nextNumber = Bank.getAccountNumCount();
 		Bank.incAccountNumCount();
@@ -74,9 +87,5 @@ public class Account implements Serializable{
 		return "\n\tAccount Number: "+accountNumber+", Holder(s): " +accountHolderNames+
 				", balance: "+ balance +", Account status: "+accountStatus+"\n";
 	}
-
-	
-	
-	
 	
 }

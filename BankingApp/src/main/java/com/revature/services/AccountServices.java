@@ -38,8 +38,10 @@ public class AccountServices {
 		}
 		System.out.println();
 	}
-	public static void addPendingAccount(Account newAccount) {
+	public static void addPendingAccount(double initialDeposit, Account newAccount, String accountType) {
 		Bank.getAccounts().add(newAccount);
+		newAccount.setAccountType(accountType);
+		newAccount.setBalance(initialDeposit);
 		System.out.println("Added account: " + newAccount.getAccountNumber()+"\n");
 		Bank.pushAllBankInfo();
 	}
@@ -61,6 +63,14 @@ public class AccountServices {
 		System.out.println("Added account: " + newAccount.getAccountNumber()+"\n");
 		Bank.pushAllBankInfo();
 	}
+	public static void addToAccount(int accountNumber, Customer customer) {
+		Account account = getAccount(accountNumber);
+		ArrayList<Customer> two = account.getAccountHolder();
+		account.setAccountType("Pending");
+		two.add(customer);
+		account.setAccountHolder(two);
+		Bank.pushAllBankInfo();
+	}
 	public static void changePendingAccount(Account pendingAccount, boolean isApproved) {
 		ListIterator<Account> itr = Bank.getAccounts().listIterator();
 		boolean edited=false;
@@ -71,9 +81,11 @@ public class AccountServices {
 					if(isApproved) {
 						System.out.println("Approved account application \n\t"+pendingAccount.getAccountNumber()+" status is now 'Active'\n");
 						currAccount.setAccountStatus("Active");
+						edited = true;
 					} else {
 						System.out.println("Declined account application \n\t"+pendingAccount.getAccountNumber()+" status is now 'Declined'\n");
-						currAccount.setAccountStatus("Decline");
+						currAccount.setAccountStatus("Declined");
+						edited = true;
 					}
 					
 				}
@@ -87,6 +99,28 @@ public class AccountServices {
 			System.out.println("Could not find this");
 		}
 	}
+	
+	public static void checkPendingAccount() {
+		ListIterator<Account> itr = Bank.getAccounts().listIterator();
+		while(itr.hasNext()) {
+			Account currAccount = itr.next();
+			if(currAccount.getAccountStatus().equals("Pending")) {
+				System.out.println(currAccount.getAccountNumber());
+			}
+		}
+	}
+	
+	public static void showPendingAccount() {
+		ListIterator<Account> itr = Bank.getAccounts().listIterator();
+		while(itr.hasNext()) {
+			Account currAccount = itr.next();
+			if(currAccount.getAccountStatus().equals("Pending")) {
+				System.out.println(currAccount.getAccountHolder());
+			}
+		}
+	}
+	
+	
 	public static void removeAccount(Account existingAccount) {
 		ListIterator<Account> itr = Bank.getAccounts().listIterator();
 		try {
