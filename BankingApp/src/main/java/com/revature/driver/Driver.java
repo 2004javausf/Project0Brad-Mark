@@ -1,7 +1,7 @@
 package com.revature.driver;
 
 import com.revature.bank.Bank;
-<<<<<<< HEAD
+
 import com.revature.menu.AdminMenu;
 import com.revature.menu.CustomerMenu;
 import com.revature.menu.EmployeeMenu;
@@ -10,8 +10,7 @@ import com.revature.services.AccountServices;
 import com.revature.services.BankServices;
 import com.revature.services.CustomerServices;
 import com.revature.users.Customer;
-=======
->>>>>>> 7a3851676029e5205b42a43aeedb5a67529fdde3
+
 
 public class Driver {
 
@@ -22,7 +21,7 @@ public class Driver {
 		Menu m = new Menu();
 		m.runMenu();
 		
-<<<<<<< HEAD
+
 
 		
 		//CustomerMenu c = new CustomerMenu("Brad", "Mark");
@@ -38,10 +37,10 @@ public class Driver {
 //		AdminMenu.runAdminMenu();
 //		//example customer
 //		Customer exampleCustomer = new Customer("Brad","Mark");
-=======
+
 		//example customer
 //		Customer exampleCustomer = new Customer("customerName","Password");
->>>>>>> 7a3851676029e5205b42a43aeedb5a67529fdde3
+
 		
 //		System.out.println(exampleCustomer);
 		//example account
@@ -51,16 +50,16 @@ public class Driver {
 //		Account exampleAccount = new Account();
 //		System.out.println(exampleAccount.getAccountHolder());
 		
-<<<<<<< HEAD
+
 //		BankServices.withdraw(AccountServices.getAccount(1000), 10);
 //		BankServices.deposit(AccountServices.getAccount(1000), 20);
 //		System.out.println(exampleAccount.getBalance());	
 //		BankServices.transfer(AccountServices.getAccount(1002), AccountServices.getAccount(1001), 100);
-=======
+
 //		System.out.println(CustomerServices.getCustomer("customerName"));
 		
 
->>>>>>> 7a3851676029e5205b42a43aeedb5a67529fdde3
+
 		
 //		CustomerServices.addCustomer(exampleCustomer);
 //		AccountServices.addPendingAccount(exampleAccount);
